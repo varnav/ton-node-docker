@@ -1,9 +1,7 @@
-FROM ubuntu:18.04 as builder
+FROM ubuntu:19.10 as builder
 RUN apt-get update && \
-	apt-get install -y build-essential cmake clang-6.0 openssl libssl-dev zlib1g-dev gperf wget git && \
+	apt-get install -y build-essential cmake clang openssl libssl-dev zlib1g-dev gperf wget git && \
 	rm -rf /var/lib/apt/lists/*
-ENV CC clang-6.0
-ENV CXX clang++-6.0
 WORKDIR /
 RUN git clone --recursive https://github.com/ton-blockchain/ton
 WORKDIR /ton
@@ -13,7 +11,7 @@ RUN mkdir build && \
 	cmake .. && \
 	make
 
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 RUN apt-get update && \
 	apt-get install -y openssl wget&& \
 	rm -rf /var/lib/apt/lists/*
