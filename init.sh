@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -ex
 
 # global config 
 if [ ! -z "$GCONFURL" ]; then
@@ -7,6 +7,11 @@ if [ ! -z "$GCONFURL" ]; then
 else
     echo -e "\e[1;33m[=]\e[0m No global config provided, downloading default."
     wget -q https://test.ton.org/ton-global.config.json -O /var/ton-work/db/ton-global.config
+fi
+
+if [ -z "$PUBLIC_IP" ]; then
+    PUBLIC_IP=`curl http://checkip.amazonaws.com`
+    echo "Autodetected public IP $PUBLIC_IP"
 fi
 
 # Init local config with IP:PORT

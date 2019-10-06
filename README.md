@@ -10,10 +10,6 @@ https://test.ton.org
 
 `ufw allow 43678/udp`
 
-#### Get your public IP
-
-`host myip.opendns.com resolver1.opendns.com`
-
 #### Build
 
 It's recommended to build this on same machine where you plan to run it.
@@ -25,7 +21,7 @@ docker build -t varnav/ton-node .
 
 #### Run (use public IP from step above)
 
-```docker run -d --name ton-testnet -v ton-db:/var/ton-work/db -e "PUBLIC_IP=111.111.111.111" -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+```docker run -d --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
 
 #### Thanks to
 
