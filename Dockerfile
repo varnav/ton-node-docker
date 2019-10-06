@@ -29,4 +29,7 @@ WORKDIR /var/ton-work/db
 COPY init.sh control.template ./
 RUN chmod +x init.sh
 
+VOLUME /var/ton-work/db
+EXPOSE 43678 43679
+
 ENTRYPOINT ["./init.sh"]

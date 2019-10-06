@@ -1,28 +1,32 @@
 # Telegram Open Network Node
+
+[![Test status](https://api.travis-ci.org/varnav/ton-node-docker.svg?branch=master)](https://travis-ci.org/varnav/ton-node-docker) [![Docker Pulls](https://img.shields.io/docker/pulls/varnav/ton-node.svg)](https://hub.docker.com/r/varnav/ton-node)
+
 Dockerfile for Telegram Open Network Node
 
-#### Install
-```docker pull it4addict/ton-node```
-#### Create volume
-```docker volume create ton-db```
-#### Run
-```docker run -d --name ton-node --mount source=ton-db,target=/var/ton-work/db --network host -e "PUBLIC_IP=<YOUR_PUBLIC_IP>" -e "CONSOLE_PORT=<TCP-PORT1>" -e "LITESERVER=true" -e "LITE_PORT=<TCP-PORT2>" -it it4addict/ton-node```
+https://test.ton.org
 
+#### Open firewall
 
-If you don't need Liteserver, then remove -e "LITESERVER=true".
+`ufw allow 43678/udp`
 
-#### Use
-```docker exec -ti <container-id> /bin/bash```
+#### Get your public IP
 
-```./validator-engine-console -k client -p server.pub -a <IP>:<TCP-PORT1>```
+`host myip.opendns.com resolver1.opendns.com`
 
-IP:PORT is shown at start of container.
+#### Build
 
-#### Lite-client
-To use lite-client you need to get liteserver.pub from container.
+It's recommended to build this on same machine where you plan to run it.
 
-```docker cp <container-id>:/var/ton-work/db/liteserver.pub /your/path```
+```git clone https://github.com/varnav/ton-node-docker.git
+cd ton-node-docker
+docker build -t varnav/ton-node .```
 
-Then you can connect to it, but be sure you use right port, it's different from fullnode console port.
+#### Run (use public IP from step above)
 
-```lite-client -a <IP>:<TCP-PORT2> -p liteserver.pub```
+```docker run -d --name ton-testnet -v ton-db:/var/ton-work/db -e "PUBLIC_IP=111.111.111.111" -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+
+#### Thanks to
+
+akme
+copperbits
