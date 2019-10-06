@@ -20,7 +20,8 @@ It's recommended to build this on same machine where you plan to run it.
 
 ```git clone https://github.com/varnav/ton-node-docker.git
 cd ton-node-docker
-docker build -t varnav/ton-node .```
+docker build -t varnav/ton-node .
+```
 
 #### Run (use public IP from step above)
 
