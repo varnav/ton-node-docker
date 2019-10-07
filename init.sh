@@ -1,4 +1,5 @@
-#!/usr/bin/env bash -ex
+#!/usr/bin/env bash
+set -ex
 
 # global config 
 if [ ! -z "$GCONFURL" ]; then
@@ -10,7 +11,7 @@ else
 fi
 
 if [ -z "$PUBLIC_IP" ]; then
-    PUBLIC_IP=`curl http://checkip.amazonaws.com`
+    PUBLIC_IP=`curl -s http://checkip.amazonaws.com`
     echo "Autodetected public IP $PUBLIC_IP"
 fi
 
@@ -45,8 +46,8 @@ else
     echo -e "\e[1;32m[+]\e[0m Generated client public certificate"
     # Adding client permissions
     sed -e "s/CONSOLE-PORT/\"$(printf "%q" $CONSOLE_PORT)\"/g" -e "s~SERVER-ID~\"$(printf "%q" $SERVER_ID2)\"~g" -e "s~CLIENT-ID~\"$(printf "%q" $CLIENT_ID2)\"~g" control.template > control.new
-    sed -e "s~\"control\"\ \:\ \[~$(printf "%q" $(cat control.new))~g" config.json > config.json.new
-    mv config.json.new config.json
+    sed -e "s~\"control\"\ \:\ \[~$(printf "%q" $(cat control.new))~g" /var/ton-work/db/config.json > config.json.new
+    mv config.json.new /var/ton-work/db/config.json
 fi
 
 # Liteserver
@@ -64,8 +65,8 @@ else
             LITE_PORT="43679"
         fi
         LITESERVERS=$(printf "%q" "\"liteservers\":[{\"id\":\"$LITESERVER_ID2\",\"port\":\"$LITE_PORT\"}")
-        sed -e "s~\"liteservers\"\ \:\ \[~$LITESERVERS~g" config.json > config.json.liteservers
-        mv config.json.liteservers config.json
+        sed -e "s~\"liteservers\"\ \:\ \[~$LITESERVERS~g" /var/ton-work/db/config.json > config.json.liteservers
+        mv config.json.liteservers /var/ton-work/db/config.json
     fi
 fi
 
