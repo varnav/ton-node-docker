@@ -1,6 +1,6 @@
 # Telegram Open Network Node
 
-[![Test status](https://api.travis-ci.org/varnav/ton-node-docker.svg?branch=master)](https://travis-ci.org/varnav/ton-node-docker) [![Docker Pulls](https://img.shields.io/docker/pulls/varnav/ton-node.svg)](https://hub.docker.com/r/varnav/ton-node)
+[![Test status](https://travis-ci.com/varnav/ton-node.svg?branch=master)](https://travis-ci.com/varnav/ton-node) [![Docker Pulls](https://img.shields.io/docker/pulls/varnav/ton-node.svg)](https://hub.docker.com/r/varnav/ton-node)
 
 Dockerfile for Telegram Open Network Node
 
