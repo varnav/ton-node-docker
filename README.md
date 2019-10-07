@@ -19,9 +19,13 @@ cd ton-node-docker
 docker build -t varnav/ton-node .
 ```
 
-#### Run (use public IP from step above)
+#### Run
 
 ```docker run -d --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+
+#### License
+
+MIT
 
 #### Thanks to
 

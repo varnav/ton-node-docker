@@ -1,4 +1,9 @@
 FROM ubuntu:19.10 as builder
+
+LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
+LABEL Description="Docker image for TON (Telegram open network) node"
+LABEL License="MIT License"
+
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
 	apt-get install -y build-essential cmake clang openssl libssl-dev zlib1g-dev gperf wget git && \
@@ -10,12 +15,12 @@ WORKDIR /ton
 RUN mkdir build && \
 	cd build && \
 	cmake .. && \
-	make
+	make -j 4
 
 FROM ubuntu:19.10
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends openssl wget && \
+	apt-get install -y curl ca-certificates openssl wget && \
 	rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /var/ton-work/db && \
 	mkdir -p /var/ton-work/db/static
