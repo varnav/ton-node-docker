@@ -30,7 +30,7 @@ COPY --from=builder /ton/build/validator-engine/validator-engine /usr/local/bin/
 COPY --from=builder /ton/build/validator-engine-console/validator-engine-console /usr/local/bin/
 COPY --from=builder /ton/build/utils/generate-random-id /usr/local/bin/
 
-WORKDIR /var/ton-work/db
+WORKDIR /usr/local/bin/
 COPY init.sh control.template ./
 RUN chmod +x init.sh
 

@@ -19,9 +19,13 @@ cd ton-node-docker
 docker build -t varnav/ton-node .
 ```
 
-#### Run
+#### Run interactively
 
-```docker run -d --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+```docker run --rm -it --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+
+#### Run as daemon
+
+```docker run -d --restart=unless-stopped --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
 
 #### License
 
