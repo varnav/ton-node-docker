@@ -1,10 +1,10 @@
 FROM ubuntu:19.10 as builder
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends build-essential cmake clang openssl libssl-dev zlib1g-dev gperf wget git && \
+	apt-get install -y build-essential cmake clang openssl libssl-dev zlib1g-dev gperf wget git && \
 	rm -rf /var/lib/apt/lists/*
 WORKDIR /
-RUN git clone --recursive https://github.com/ton-blockchain/ton
+RUN git clone --depth 1 --recursive https://github.com/ton-blockchain/ton
 WORKDIR /ton
 
 RUN mkdir build && \
