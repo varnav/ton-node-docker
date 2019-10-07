@@ -9,5 +9,5 @@ install:
   - curl -sL -o ${HADOLINT} "https://github.com/hadolint/hadolint/releases/download/v1.17.2/hadolint-$(uname -s)-$(uname -m)"
   - chmod 700 ${HADOLINT}
 script:
-  - ${HADOLINT} --ignore DL3003 --ignore DL3008 --ignore DL3018 Dockerfile
+  - ${HADOLINT} --ignore DL3015 --ignore DL3003 --ignore DL3008 --ignore DL3018 Dockerfile
   - docker build . -t varnav/ton-node
