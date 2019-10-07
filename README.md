@@ -14,18 +14,23 @@ https://test.ton.org
 
 It's recommended to build this on same machine where you plan to run it.
 
-```git clone https://github.com/varnav/ton-node-docker.git
+```bash
+git clone https://github.com/varnav/ton-node-docker.git
 cd ton-node-docker
 docker build -t varnav/ton-node .
 ```
 
 #### Run interactively
 
-```docker run --rm -it --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+```bash
+docker run --rm -it --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node
+```
 
 #### Run as daemon
 
-```docker run -d --restart=unless-stopped --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node```
+```bash
+docker run -d --restart=unless-stopped --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node
+```
 
 #### License
 
@@ -33,5 +38,5 @@ MIT
 
 #### Thanks to
 
-akme
+akme  
 copperbits
