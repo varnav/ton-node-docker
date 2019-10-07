@@ -14,7 +14,7 @@ WORKDIR /ton
 
 RUN mkdir build && \
 	cd build && \
-	cmake .. && \
+	cmake -DCMAKE_BUILD_TYPE=Release .. && \
 	make -j 4
 
 FROM ubuntu:19.10
