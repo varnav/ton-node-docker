@@ -32,6 +32,14 @@ docker run --rm -it --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PO
 docker run -d --restart=unless-stopped --name ton-testnet -v ton-db:/var/ton-work/db -e "CONSOLE_PORT=43678" -e "LITESERVER=true" -e "LITE_PORT=43679" -p 43678:43678 -p 43679:43679 varnav/ton-node
 ```
 
+#### Clean all
+
+```bash
+docker rm --force ton-testnet
+docker volume rm ton-db
+docker image rm varnav/ton-node
+```
+
 #### License
 
 MIT
