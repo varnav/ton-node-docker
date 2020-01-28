@@ -1,6 +1,6 @@
 # Telegram Open Network Node
 
-[![Test status](https://travis-ci.com/varnav/ton-node.svg?branch=master)](https://travis-ci.com/varnav/ton-node) [![Docker Pulls](https://img.shields.io/docker/pulls/varnav/ton-node.svg)](https://hub.docker.com/r/varnav/ton-node)
+[![Test status](https://travis-ci.com/varnav/ton-node-docker.svg?branch=master)](https://travis-ci.com/varnav/ton-node-docker) [![Docker Pulls](https://img.shields.io/docker/pulls/varnav/ton-node.svg)](https://hub.docker.com/r/varnav/ton-node)
 
 Dockerfile for Telegram Open Network Node
 
@@ -8,7 +8,7 @@ https://test.ton.org
 
 #### Open firewall
 
-`ufw allow 43678/udp`
+`ufw allow 43679/udp`
 
 #### Build
 
@@ -38,6 +38,13 @@ docker run -d --restart=unless-stopped --name ton-testnet -v ton-db:/var/ton-wor
 docker rm --force ton-testnet
 docker volume rm ton-db
 docker image rm varnav/ton-node
+```
+
+### Run with kubernetes
+
+```
+kubectl apply -f .\kubernetes-deployment.yml
+kubectl expose deployment ton-node --type LoadBalancer
 ```
 
 #### License

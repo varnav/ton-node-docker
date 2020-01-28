@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ton-node
+  labels:
+    app: ton-node
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ton-node
+  template:
+    metadata:
+      labels:
+        app: ton-node
+    spec:
+      containers:
+      - name: ton-node
+        image: varnav/ton-node
+        env:
+        - name: CONSOLE_PORT
+          value: 43678
+        - name: LITESERVER
+          value: "true"
+        - name: LITE_PORT
+          value: 43679
+        ports:
+        - name: ton-console
+          containerPort: 43678
+        - name: ton-lite
+          containerPort: 43679
+        resources:
+          limits:
+            memory: "4Gi"
+            cpu: "200m"
+        volumeMounts:
+          - name: ton-data
+            mountPath: /var/ton-work/db
+      # initContainers:
+      # - name: init-ulimitn
+      #   image: busybox
+      #   command: ["sh", "-c", "ulimit -n 16000"]
+      #   securityContext:
+      #     privileged: true
+      volumes:
+      - name: ton-data
