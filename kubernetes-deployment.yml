@@ -19,11 +19,11 @@ spec:
         image: varnav/ton-node
         env:
         - name: CONSOLE_PORT
-          value: 43678
+          value: "43678"
         - name: LITESERVER
           value: "true"
         - name: LITE_PORT
-          value: 43679
+          value: "43679"
         ports:
         - name: ton-console
           containerPort: 43678
