@@ -1,4 +1,4 @@
-FROM ubuntu:19.10 as builder
+FROM ubuntu:20.04 as builder
 
 LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
 LABEL Description="Docker image for TON (Telegram open network) node"
@@ -17,7 +17,7 @@ RUN mkdir build && \
 	cmake -DCMAKE_BUILD_TYPE=Release .. && \
 	make -j 4
 
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
 	apt-get install -y curl ca-certificates openssl wget && \
